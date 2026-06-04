@@ -1,0 +1,35 @@
+// チェックされたアイテム自身を更新（直接IDで指定して子要素と混同しない）
+(function() {
+  var itemId   = <%= @item.id %>;
+  var isDone   = <%= @item.is_done %>;
+  var $item    = $('#clt_item_' + itemId);
+  var $checkbox = $('#clt-checkbox-' + itemId);
+
+  $item.toggleClass('is-done', isDone);
+  $checkbox.prop('checked', isDone);
+  $item.children('.clt-subject').toggleClass('is-done', isDone);
+
+<% if @item.child? && @item.parent %>
+  // 子の変更 → 親の状態を同期
+  var parentId   = <%= @item.parent.id %>;
+  var parentDone = <%= @item.parent.reload.is_done %>;
+  var $parent    = $('#clt_item_' + parentId);
+  $parent.toggleClass('is-done', parentDone);
+  $('#clt-checkbox-' + parentId).prop('checked', parentDone);
+  $parent.children('.clt-subject').toggleClass('is-done', parentDone);
+<% end %>
+
+<% if !@item.child? && @item.parent? %>
+  // 親の変更 → 全子をカスケード
+  <% @item.children.reload.each do |child| %>
+  (function() {
+    var childId   = <%= child.id %>;
+    var childDone = <%= child.is_done %>;
+    var $child    = $('#clt_item_' + childId);
+    $child.toggleClass('is-done', childDone);
+    $('#clt-checkbox-' + childId).prop('checked', childDone);
+    $child.children('.clt-subject').toggleClass('is-done', childDone);
+  })();
+  <% end %>
+<% end %>
+})();

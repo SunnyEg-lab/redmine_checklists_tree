@@ -1,0 +1,14 @@
+<div class="clt-item-row existing show" id="clt_field_<%= f.object.id %>">
+  <%= f.check_box :is_done, class: 'clt-item-checkbox' %>
+  <span class="clt-subject"></span>
+  <span class="clt-remove-wrap">
+    <%= f.hidden_field :_destroy, value: 'false', class: 'clt-destroy-flag' %>
+    <%= link_to sprite_icon('del', ''), 'javascript:void(0)',
+          class: 'icon icon-del clt-remove-btn',
+          title: l(:button_delete) %>
+  </span>
+  <%= f.hidden_field :subject,   class: 'clt-subject-hidden' %>
+  <%= f.hidden_field :position,  class: 'clt-position' %>
+  <%= f.hidden_field :parent_id, class: 'clt-parent-id' %>
+  <%= f.hidden_field :id,        class: 'clt-id' %>
+</div>

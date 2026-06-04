@@ -1,0 +1,14 @@
+<li id="clt_item_<%= checklist_tree_item.id %>"
+    class="clt-item <%= 'is-done' if checklist_tree_item.is_done %> <%= 'clt-has-parent' if is_parent %>"
+    data-id="<%= checklist_tree_item.id %>"
+    data-parent-id="<%= checklist_tree_item.parent_id %>">
+  <%= check_box_tag 'checklist_tree_item', '',
+        checklist_tree_item.is_done,
+        disabled: !User.current.allowed_to?(:done_checklists_tree, checklist_tree_item.issue.project),
+        data: { url: done_checklist_tree_path(checklist_tree_item) },
+        class: 'clt-checkbox',
+        id: "clt-checkbox-#{checklist_tree_item.id}" %>
+  <span class="clt-subject <%= 'is-done' if checklist_tree_item.is_done %>">
+    <%= checklist_tree_item.subject %>
+  </span>
+</li>

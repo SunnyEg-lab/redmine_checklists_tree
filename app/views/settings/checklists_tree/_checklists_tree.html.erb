@@ -1,0 +1,17 @@
+<p>
+  <label><%= l(:label_checklists_tree_save_log) %></label>
+  <%= hidden_field_tag 'settings[save_log]', 0, id: nil %>
+  <%= check_box_tag 'settings[save_log]', 1, @settings['save_log'].to_i > 0 %>
+</p>
+
+<p>
+  <label><%= l(:label_checklists_tree_notify) %></label>
+  <%= hidden_field_tag 'settings[notify]', 0, id: nil %>
+  <%= check_box_tag 'settings[notify]', 1, @settings['notify'].to_i > 0 %>
+</p>
+
+<p>
+  <label><%= l(:label_checklists_tree_block_issue_closing) %></label>
+  <%= hidden_field_tag 'settings[block_issue_closing]', 0, id: nil %>
+  <%= check_box_tag 'settings[block_issue_closing]', 1, @settings['block_issue_closing'].to_i > 0 %>
+</p>

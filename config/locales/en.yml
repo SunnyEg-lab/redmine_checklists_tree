@@ -1,0 +1,17 @@
+en:
+  label_checklist_tree_plural:  Checklists (Tree)
+  label_checklist_tree_item:    Checklist item
+  label_checklist_tree_add:     Add item...
+  label_checklist_tree_done:         marked done
+  label_checklist_tree_undone:       marked undone
+  label_checklist_tree_item_added:   added
+  label_checklist_tree_item_deleted: deleted
+  label_checklist_tree_item_moved:   moved
+  label_checklist_tree_reorder_btn: Reorder
+  label_checklist_tree_reordered:    reordered
+  label_checklists_tree_save_log: Save history on check change
+  label_checklists_tree_notify:              Send email notification on check change
+  label_checklists_tree_block_issue_closing: Block issue closing when checklists incomplete
+  label_checklists_tree_must_complete:          Please complete all checklists before closing
+  label_checklists_tree_delete_parent_blocked:  Please delete child items first
+  label_checklist_tree_add_child:               Add child...

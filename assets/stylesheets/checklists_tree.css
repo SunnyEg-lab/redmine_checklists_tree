@@ -1,0 +1,248 @@
+/* redmine_checklists_tree */
+
+/* ---- 表示画面（show） ---- */
+#checklist-tree ul { list-style: none; padding: 0; margin: 0; }
+#checklist-tree .clt-children-list { padding-left: 24px; }
+li.is-done > .clt-subject { text-decoration: line-through; color: #888; }
+
+/* ---- 編集フォーム共通 ---- */
+/* .tabular p の代替（flexboxでlabel+コンテンツを横並びに） */
+#checklist-tree-form-wrap .clt-row {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 0 5px 0;
+  clear: left;
+}
+/* デフォルトのfloat/margin-leftを上書き */
+#checklist-tree-form-wrap .clt-row > label {
+  float: none !important;
+  margin-left: 0 !important;
+  flex: 0 0 175px;
+  width: 175px;
+  max-width: 175px;
+  overflow: hidden;
+  text-align: right;
+  font-weight: bold;
+  padding: 4px 8px 0 0;
+}
+
+#clt_form_root { padding-top: 4px; flex: 1; min-width: 0; }
+
+.clt-group { margin: 2px 0; }
+
+.clt-children-wrap { padding-left: 72px; border-left: 2px solid #ddd; margin-left: 8px; }
+
+/* アイテム行 */
+.clt-item-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 2px;
+  line-height: 1.5;
+}
+
+/* subject */
+.clt-subject { cursor: text; margin-right: 4px; }
+.clt-subject:hover { background: #f5f5f5; border-radius: 2px; }
+.clt-subject.is-done { text-decoration: line-through; color: #888; }
+
+/* subject インライン編集 */
+.clt-subject-input {
+  flex: 1;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  padding: 1px 4px;
+  font-size: inherit;
+}
+
+/* 並べ替えボタン */
+.clt-reorder-btn-wrap { margin-bottom: 6px; }
+.clt-reorder-btn {
+  background: none;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  padding: 2px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #555;
+}
+.clt-reorder-btn:hover { background: #f0f0f0; border-color: #888; color: #333; }
+
+
+/* 削除ボタン */
+.clt-remove-wrap { flex-shrink: 0; display: inline-flex; align-items: center; }
+.clt-remove-btn { opacity: 0.5; display: inline-flex; align-items: center; }
+.clt-remove-btn:hover { opacity: 1; }
+.clt-remove-btn svg { width: 16px; height: 16px; }
+.clt-remove-disabled {
+  opacity: 0.2 !important;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+/* 子追加入力欄 */
+.clt-child-input-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+}
+.clt-child-edit-box {
+  padding: 2px 6px;
+  font-size: 13px;
+  width: 40%;
+}
+
+/* 親追加入力欄 */
+.clt-parent-input-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.clt-parent-input-row .clt-edit-box {
+  padding: 2px 6px;
+  font-size: 13px;
+  width: 40%;
+}
+
+/* 追加ボタン共通 */
+.clt-add-parent-btn,
+.clt-add-child-btn {
+  background: none;
+  border: none;
+  padding: 0 2px;
+  cursor: pointer;
+  opacity: 0.6;
+  vertical-align: middle;
+  line-height: 1;
+}
+.clt-add-parent-btn:hover,
+.clt-add-child-btn:hover { opacity: 1; }
+.clt-add-parent-btn svg,
+.clt-add-child-btn svg { width: 18px; height: 18px; vertical-align: middle; }
+
+/* ---- DnDテーブルオーバーレイ ---- */
+.clt-dnd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.clt-dnd-panel {
+  background: #fff;
+  border-radius: 6px;
+  padding: 16px 20px 16px 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: min(80vw, 800px);
+  min-width: 420px;
+  max-width: 95vw;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  /* リサイズ可能 */
+  resize: horizontal;
+  position: relative;
+}
+/* リサイズ可能の視覚ヒント：右端にグリップ */
+.clt-dnd-panel::after {
+  content: '⋮⋮';
+  position: absolute;
+  right: 4px;
+  bottom: 8px;
+  font-size: 14px;
+  color: #bbb;
+  letter-spacing: -2px;
+  cursor: ew-resize;
+  user-select: none;
+}
+.clt-dnd-panel:hover::after { color: #888; }
+
+.clt-dnd-hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: #555;
+}
+.clt-dnd-resize-hint {
+  margin-left: 10px;
+  color: #aaa;
+  font-style: italic;
+}
+
+.clt-dnd-footer {
+  margin-top: 12px;
+  text-align: right;
+}
+
+/* DnDテーブル */
+.clt-dnd-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.clt-dnd-table th {
+  background: #f0f0f0;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #666;
+  border: 1px solid #ddd;
+  width: 50%;
+  text-align: left;
+}
+.clt-dnd-table td {
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  height: 28px;
+}
+
+.clt-dnd-item-cell {
+  padding: 4px 8px;
+  background: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.clt-dnd-handle-icon {
+  color: #bbb;
+  margin-right: 4px;
+  font-size: 13px;
+  cursor: grab;
+}
+.clt-dnd-handle-icon:active { cursor: grabbing; }
+.clt-dnd-label.is-done { text-decoration: line-through; color: #aaa; }
+
+.clt-dnd-item-row.clt-dnd-dragging .clt-dnd-item-cell {
+  background: #fff8e1;
+  font-weight: bold;
+  outline: 2px solid #f9a825;
+}
+
+.clt-dnd-disabled {
+  background: repeating-linear-gradient(
+    45deg, #f0f0f0, #f0f0f0 4px, #e8e8e8 4px, #e8e8e8 8px
+  );
+}
+
+.clt-dnd-gap-row { height: 10px; }
+.clt-dnd-gap-cell { height: 10px; background: #fff; }
+
+.clt-dnd-gap-row.clt-dnd-valid .clt-dnd-gap-cell {
+  background: #e8f5e9;
+  border: 1px dashed #66bb6a;
+}
+
+.clt-dnd-gap-row.clt-dnd-invalid td {
+  background: repeating-linear-gradient(
+    45deg, #f5f5f5, #f5f5f5 3px, #eeeeee 3px, #eeeeee 6px
+  );
+}
+
+.clt-dnd-gap-row.clt-dnd-hover .clt-dnd-gap-cell {
+  background: #c8e6c9;
+  border: 2px solid #388e3c;
+  height: 16px;
+}

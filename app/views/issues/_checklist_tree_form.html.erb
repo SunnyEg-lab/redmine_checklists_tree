@@ -1,0 +1,59 @@
+<% if User.current.allowed_to?(:edit_checklists_tree, @project) %>
+<div class="tabular" id="checklist-tree-form-wrap">
+  <div class="clt-row">
+    <label><%= l(:label_checklist_tree_plural) %></label>
+
+    <%= fields_for @issue do |f| %>
+      <% template_html = clt_fields_template(f, :checklist_trees) %>
+      <script type="text/template" id="clt_item_template"><%= template_html.html_safe %></script>
+
+      <div id="clt_form_root">
+        <div class="clt-reorder-btn-wrap" id="clt_reorder_btn_wrap" style="display:none;">
+          <button type="button" class="clt-reorder-btn">
+            ⇅ <%= l(:label_checklist_tree_reorder_btn) %>
+          </button>
+        </div>
+        <% parents    = @issue.checklist_trees.select { |i| i.parent_id.nil? }.sort_by(&:position) %>
+        <% children_h = @issue.checklist_trees.select { |i| i.parent_id.present? }.group_by(&:parent_id) %>
+
+        <% parents.each do |item| %>
+          <% kids = (children_h[item.id] || []).sort_by(&:position) %>
+          <div class="clt-group" data-group-id="<%= item.id %>">
+            <%= render partial: 'checklist_tree_item_field',
+                       locals: { f: f, item: item, idx: item.id,
+                                 is_child: false, has_children: kids.any? } %>
+            <div class="clt-children-wrap">
+              <% kids.each do |child| %>
+                <%= render partial: 'checklist_tree_item_field',
+                           locals: { f: f, item: child, idx: child.id,
+                                     is_child: true, has_children: false } %>
+              <% end %>
+              <div class="clt-child-input-row" data-parent-id="<%= item.id %>">
+                <%= text_field_tag '', '', class: 'clt-child-edit-box',
+                      placeholder: l(:label_checklist_tree_add_child) %>
+                <button type="button" class="clt-add-child-btn"><%= sprite_icon('add') %></button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <%# 親（単独）追加入力欄 %>
+        <div class="clt-parent-input-row" id="clt_new_item">
+          <%= text_field_tag 'clt_new_subject', '',
+                class: 'clt-edit-box',
+                placeholder: l(:label_checklist_tree_add) %>
+          <button type="button" class="clt-add-parent-btn"><%= sprite_icon('add') %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  var clt_i18n = {
+    delete_parent_blocked: '<%= j l(:label_checklists_tree_delete_parent_blocked) %>',
+    add_child: '<%= j l(:label_checklist_tree_add_child) %>'
+  };
+  ChecklistTree.initForm();
+<% end %>
+<% end %>

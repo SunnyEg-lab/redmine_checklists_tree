@@ -1,0 +1,23 @@
+<% scope = "issue[checklist_trees_attributes][#{idx}]" %>
+<% delete_blocked = !is_child && has_children %>
+<div class="clt-item-row existing show <%= 'clt-child' if is_child %>"
+     id="clt_field_<%= item.id %>">
+
+  <%= hidden_field_tag "#{scope}[is_done]", '0' %>
+  <%= check_box_tag   "#{scope}[is_done]", '1', item.is_done,
+        id: "clt_done_#{item.id}", class: 'clt-item-checkbox' %>
+
+  <span class="clt-subject <%= 'is-done' if item.is_done %>">
+    <%= item.subject.to_s.strip %>
+  </span>
+
+  <%= hidden_field_tag "#{scope}[_destroy]", 'false', class: 'clt-destroy-flag' %>
+  <%= link_to sprite_icon('del', ''), 'javascript:void(0)',
+        class: "icon icon-del clt-remove-btn #{'clt-remove-disabled' if delete_blocked}",
+        title: delete_blocked ? l(:label_checklists_tree_delete_parent_blocked) : '' %>
+
+  <%= hidden_field_tag "#{scope}[subject]",   item.subject,   class: 'clt-subject-hidden' %>
+  <%= hidden_field_tag "#{scope}[position]",  item.position,  class: 'clt-position' %>
+  <%= hidden_field_tag "#{scope}[parent_id]", item.parent_id, class: 'clt-parent-id' %>
+  <%= hidden_field_tag "#{scope}[id]",        item.id,        class: 'clt-id' %>
+</div>

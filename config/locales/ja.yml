@@ -1,0 +1,17 @@
+ja:
+  label_checklist_tree_plural:  チェックリスト（親子）
+  label_checklist_tree_item:    チェックリスト項目
+  label_checklist_tree_add:     項目を追加...
+  label_checklist_tree_done:         完了にしました
+  label_checklist_tree_undone:       未完了に戻しました
+  label_checklist_tree_item_added:   追加されました
+  label_checklist_tree_item_deleted: 削除されました
+  label_checklist_tree_item_moved:   移動されました
+  label_checklist_tree_reordered:    並び替えられました
+  label_checklist_tree_reorder_btn: 並べ替え
+  label_checklists_tree_save_log: チェック変更の履歴を残す
+  label_checklists_tree_notify:              チェック変更の通知メールを送る
+  label_checklists_tree_block_issue_closing: 未完了チェックがあるとチケットをクローズできない
+  label_checklists_tree_must_complete:          チェックリストを全て完了してからクローズしてください
+  label_checklists_tree_delete_parent_blocked:  子アイテムを先に削除してください
+  label_checklist_tree_add_child:               子を追加...
