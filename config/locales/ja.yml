@@ -15,3 +15,9 @@ ja:
   label_checklists_tree_must_complete:          チェックリストを全て完了してからクローズしてください
   label_checklists_tree_delete_parent_blocked:  子アイテムを先に削除してください
   label_checklist_tree_add_child:               子を追加...
+  label_checklist_tree_dnd_hint:        '⠿ を掴んで離すと移動確定。何度でも変更できます。グレー部分には移動できません。'
+  label_checklist_tree_dnd_resize_hint: 'ウィンドウ右端をドラッグしてウィンドウ幅を変更できます'
+  label_checklist_tree_dnd_apply:       '完了'
+  label_checklist_tree_dnd_cancel:      'キャンセル'
+  label_checklist_tree_dnd_col_parent:  '親 / 単独'
+  label_checklist_tree_dnd_col_child:   '子'

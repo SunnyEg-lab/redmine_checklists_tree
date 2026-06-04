@@ -366,12 +366,12 @@ var ChecklistTree = (function ($) {
       var $ov = $(
         '<div class="clt-dnd-overlay">' +
           '<div class="clt-dnd-panel">' +
-            '<p class="clt-dnd-hint">⠿ を掴んで離すと移動確定。何度でも変更できます。グレー部分には移動できません。<span class="clt-dnd-resize-hint">右端をドラッグで幅を調整できます</span></p>' +
+            '<p class="clt-dnd-hint">' + clt_i18n.dnd_hint + '<span class="clt-dnd-resize-hint">' + clt_i18n.dnd_resize_hint + '</span></p>' +
             '<div class="clt-dnd-table-wrap"></div>' +
             '<div class="clt-dnd-footer">' +
-              '<button type="button" class="clt-dnd-apply button">完了</button>' +
+              '<button type="button" class="clt-dnd-apply button">' + clt_i18n.dnd_apply + '</button>' +
               '&nbsp;' +
-              '<button type="button" class="clt-dnd-cancel">キャンセル</button>' +
+              '<button type="button" class="clt-dnd-cancel">' + clt_i18n.dnd_cancel + '</button>' +
             '</div>' +
           '</div>' +
         '</div>'
@@ -384,7 +384,7 @@ var ChecklistTree = (function ($) {
       var $wrap = $ov.find('.clt-dnd-table-wrap');
       $wrap.empty();
 
-      var $tbl  = $('<table class="clt-dnd-table"><thead><tr><th>親 / 単独</th><th>子</th></tr></thead><tbody></tbody></table>');
+      var $tbl  = $('<table class="clt-dnd-table"><thead><tr><th>' + clt_i18n.dnd_col_parent + '</th><th>' + clt_i18n.dnd_col_child + '</th></tr></thead><tbody></tbody></table>');
       var $body = $tbl.find('tbody');
       var parents = _items.filter(function (i) { return !i.parentId; });
 
@@ -550,6 +550,12 @@ var ChecklistTree = (function ($) {
 
 // i18n文字列（Viewから差し込む）
 var clt_i18n = clt_i18n || {
-  delete_parent_blocked: '子アイテムを先に削除してください',
-  add_child: '子を追加...'
+  delete_parent_blocked: 'Please delete child items first',
+  add_child:        'Add child...',
+  dnd_hint:         'Drag ⠿ to move items. Drop to confirm. Gray areas are unavailable.',
+  dnd_resize_hint:  'Drag the right edge of the window to resize',
+  dnd_apply:        'Done',
+  dnd_cancel:       'Cancel',
+  dnd_col_parent:   'Parent / Standalone',
+  dnd_col_child:    'Child'
 };

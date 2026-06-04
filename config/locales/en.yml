@@ -15,3 +15,9 @@ en:
   label_checklists_tree_must_complete:          Please complete all checklists before closing
   label_checklists_tree_delete_parent_blocked:  Please delete child items first
   label_checklist_tree_add_child:               Add child...
+  label_checklist_tree_dnd_hint:        'Drag ⠿ to move items. Drop to confirm. Gray areas are unavailable.'
+  label_checklist_tree_dnd_resize_hint: 'Drag the right edge of the window to resize'
+  label_checklist_tree_dnd_apply:       'Done'
+  label_checklist_tree_dnd_cancel:      'Cancel'
+  label_checklist_tree_dnd_col_parent:  'Parent / Standalone'
+  label_checklist_tree_dnd_col_child:   'Child'

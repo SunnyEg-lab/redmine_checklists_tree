@@ -52,7 +52,13 @@
 <%= javascript_tag do %>
   var clt_i18n = {
     delete_parent_blocked: '<%= j l(:label_checklists_tree_delete_parent_blocked) %>',
-    add_child: '<%= j l(:label_checklist_tree_add_child) %>'
+    add_child:        '<%= j l(:label_checklist_tree_add_child) %>',
+    dnd_hint:         '<%= j l(:label_checklist_tree_dnd_hint) %>',
+    dnd_resize_hint:  '<%= j l(:label_checklist_tree_dnd_resize_hint) %>',
+    dnd_apply:        '<%= j l(:label_checklist_tree_dnd_apply) %>',
+    dnd_cancel:       '<%= j l(:label_checklist_tree_dnd_cancel) %>',
+    dnd_col_parent:   '<%= j l(:label_checklist_tree_dnd_col_parent) %>',
+    dnd_col_child:    '<%= j l(:label_checklist_tree_dnd_col_child) %>'
   };
   ChecklistTree.initForm();
 <% end %>
