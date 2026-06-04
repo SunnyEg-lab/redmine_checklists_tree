@@ -18,6 +18,23 @@ A Redmine plugin that adds hierarchical checklists (parent/child structure) to i
 
 - Redmine 4.0 or higher
 
+## Screenshots
+
+### Plugin Settings
+| English | Japanese |
+|---|---|
+| ![Settings EN](docs/screenshots/settings_en.png) | ![Settings JA](docs/screenshots/settings_ja.png) |
+
+### Issue Edit Form
+| English | Japanese |
+|---|---|
+| ![Edit EN](docs/screenshots/edit_en.png) | ![Edit JA](docs/screenshots/edit_ja.png) |
+
+### Drag & Drop Reorder
+| English | Japanese |
+|---|---|
+| ![DnD EN](docs/screenshots/DnD_en.png) | ![DnD JA](docs/screenshots/DnD_ja.png) |
+
 ## Installation
 
 1. Clone this repository into your Redmine `plugins` directory:
