@@ -14,9 +14,20 @@ A Redmine plugin that adds hierarchical checklists (parent/child structure) to i
 - **REST API support** — full API access for checklist items
 - **i18n** — English and Japanese included
 
+## Tested Environment
+
+| | Version |
+|---|---|
+| Redmine | 6.0.4.stable |
+| Ruby | 3.3.8-p144 |
+| Rails | 7.2.2.1 |
+| Database | PostgreSQL |
+
+> Other versions may work but have not been verified. Reports via Issues are welcome.
+
 ## Requirements
 
-- Redmine 4.0 or higher
+- Redmine 4.0 or higher (based on API compatibility; tested on 6.0.4)
 
 ## Screenshots
 
