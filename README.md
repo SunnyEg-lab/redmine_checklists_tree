@@ -29,6 +29,10 @@ A Redmine plugin that adds hierarchical checklists (parent/child structure) to i
 
 - Redmine 4.0 or higher (based on API compatibility; tested on 6.0.4)
 
+## Demo
+
+[![Demo Video](https://img.youtube.com/vi/dwyiGKmkh9A/0.jpg)](https://youtu.be/dwyiGKmkh9A)
+
 ## Screenshots
 
 ### Plugin Settings
