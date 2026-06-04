@@ -3,6 +3,7 @@ CHECKLISTS_TREE_VERSION = '1.0.0'.freeze
 Redmine::Plugin.register :redmine_checklists_tree do
   name 'Redmine Checklists Tree plugin'
   author 'SunnyEG'
+  author_url 'https://github.com/SunnyEg-lab'
   description 'Checklist plugin with parent-child hierarchy, history and email notification'
   version CHECKLISTS_TREE_VERSION
 
