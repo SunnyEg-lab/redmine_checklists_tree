@@ -1,4 +1,4 @@
-CHECKLISTS_TREE_VERSION = '1.0.0'.freeze
+CHECKLISTS_TREE_VERSION = '1.0.1'.freeze
 
 Redmine::Plugin.register :redmine_checklists_tree do
   name 'Redmine Checklists Tree plugin'
