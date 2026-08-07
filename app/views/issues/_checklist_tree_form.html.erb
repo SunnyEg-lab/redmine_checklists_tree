@@ -1,4 +1,4 @@
-<% if User.current.allowed_to?(:edit_checklists_tree, @project) %>
+<% if User.current.allowed_to?(:edit_checklists_tree, @project, global: true) %>
 <div class="tabular" id="checklist-tree-form-wrap">
   <div class="clt-row">
     <label><%= l(:label_checklist_tree_plural) %></label>
